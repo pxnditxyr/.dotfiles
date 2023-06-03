@@ -1,0 +1,2 @@
+#!/bin/bash
+docker exec 03-libro-bingo-naruto-db-1 mongosh "$@"

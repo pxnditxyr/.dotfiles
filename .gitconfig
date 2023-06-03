@@ -1,0 +1,10 @@
+[init]
+	defaultBranch = main
+[user]
+	name = Yuki xD
+	email = pxnditxyr@gmail.com
+[alias]
+    s = status -sb
+    lg = log --graph --abbrev-commit --decorate --pretty='format:%C(bold "#ffff00")%h%C(reset) - %C(bold "#00ff00")(%ar)%C(reset) %C(italic "#FFFAA4")%s%C(reset) %C("#0CECDD")- %an%C(reset)%C(bold "#C0E218")%d%C(reset)' --all
+[core]
+	editor = nvim
