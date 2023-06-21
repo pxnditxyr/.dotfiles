@@ -11,8 +11,8 @@ applications = {
     'private_browser': 'microsoft-edge-dev --inprivate',
     'tor_browser': 'brave-browser-nightly --incognito --tor',
     'obs': 'obs',
-    'docker': 'systemctl --user start docker-desktop',
-    'docker_restart': 'systemctl --user restart docker-desktop'
+    'docker': 'systemctl start --user docker-desktop',
+    'docker_restart': 'systemctl restart --user docker-desktop'
 }
 
 keys = [

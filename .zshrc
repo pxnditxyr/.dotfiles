@@ -18,7 +18,7 @@ function git_branch_name () {
 
 
 setopt prompt_subst
-PS1="%F{$NAME_COLOR}%n %F{$FIRST_PAW_COLOR} %F{$DIR_COLOR}%c %F{$GIT_COLOR}\$(git_branch_name)%F{$SECOND_PAW_COLOR} %f"
+PS1="%F{$NAME_COLOR}%n %F{$FIRST_PAW_COLOR}  %F{$DIR_COLOR}%c %F{$GIT_COLOR}\$(git_branch_name)%F{$SECOND_PAW_COLOR}  %f"
 
 # alias
 # for open apps
@@ -29,21 +29,12 @@ alias l='LC_COLLATE=C ls -la --color=auto --group-directories-first --block-size
 
 # for go to group-directories
 alias work='cd ~/workspace'
-alias nest='cd ~/workspace/nest'
-alias react='cd ~/workspace/react'
 
-alias cnest='cd ~/workspace/courses/nest'
-alias c1nest='cd ~/workspace/courses/nest/01-typescript-intro'
-alias c2nest='cd ~/workspace/courses/nest/02-car-dealership'
-alias c3nest='cd ~/workspace/courses/nest/03-libro-bingo-naruto'
-alias c4nest='cd ~/workspace/courses/nest/04-ecommerce'
+alias boty='cd ~/workspace/portfolio-projects/botyrest'
+alias botyc='cd ~/workspace/portfolio-projects/botyrest-cli-interactive'
 
-alias rtwo='cd ~/workspace/react/two-factor-authentication'
-alias nboty='cd ~/workspace/nodejs/framework-pxndxs'
-
-alias fbom='cd ~/workspace/react/bomberos-front'
-alias bbom='cd ~/workspace/react/bomberos-back'
+alias fport='cd ~/workspace/portfolio-projects/portfolio/portfolio-frontend'
+alias bport='cd ~/workspace/portfolio-projects/portfolio/portfolio-backend'
 
 # exports
 export PATH="/home/pxndxs/.config/binaries/:$PATH"
-
