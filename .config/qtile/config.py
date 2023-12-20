@@ -7,8 +7,8 @@ mod = "mod4"
 
 applications = {
     'terminal': 'kitty',
-    'browser': 'microsoft-edge-dev',
-    'private_browser': 'microsoft-edge-dev --inprivate',
+    'browser': 'brave-browser-nightly',
+    'private_browser': 'brave-browser-nightly --incognito',
     'tor_browser': 'brave-browser-nightly --incognito --tor',
     'obs': 'obs',
     'docker': 'systemctl start --user docker-desktop',

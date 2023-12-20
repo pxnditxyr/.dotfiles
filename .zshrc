@@ -27,14 +27,19 @@ alias v='nvim'
 # shortcuts
 alias l='LC_COLLATE=C ls -la --color=auto --group-directories-first --block-size=M'
 
-# for go to group-directories
-alias work='cd ~/workspace'
+# offer-me
+alias ofb='cd ~/workspace/portfolio-projects/offerme/offerme-back'
+alias off='cd ~/workspace/portfolio-projects/offerme/offerme-front'
 
-alias boty='cd ~/workspace/portfolio-projects/botyrest'
-alias botyc='cd ~/workspace/portfolio-projects/botyrest-cli-interactive'
-
-alias fport='cd ~/workspace/portfolio-projects/portfolio/portfolio-frontend'
-alias bport='cd ~/workspace/portfolio-projects/portfolio/portfolio-backend'
+alias iff='cd ~/workspace/others/ing-mier/formulario/landing-formulario'
+alias ifb='cd ~/workspace/others/ing-mier/formulario/formulario-back'
 
 # exports
 export PATH="/home/pxndxs/.config/binaries/:$PATH"
+
+# bun completions
+[ -s "/home/pxndxs/.bun/_bun" ] && source "/home/pxndxs/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
