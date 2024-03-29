@@ -12,7 +12,11 @@ applications = {
     'tor_browser': 'brave-browser-nightly --incognito --tor',
     'obs': 'obs',
     'docker': 'systemctl start --user docker-desktop',
-    'docker_restart': 'systemctl restart --user docker-desktop'
+    'docker_restart': 'systemctl restart --user docker-desktop',
+    'explorer': 'kitty ranger',
+    'media': 'vlc',
+    'database_client': 'dbeaver',
+    'screen_shot': 'flameshot gui',
 }
 
 keys = [
@@ -42,7 +46,11 @@ keys = [
     Key( [ mod ], 'Return', lazy.spawn( applications[ 'terminal' ] ), desc='Launch terminal' ),
     Key( [ mod ], 'b', lazy.spawn( applications[ 'browser' ] ), desc='Launch Browser' ),
     Key( [ mod ], 'p', lazy.spawn( applications[ 'private_browser' ] ), desc='Launch Browser in Private Mode' ),
+    Key( [ mod ], 'e', lazy.spawn( applications[ 'explorer' ] ), desc='Launch File Explorer' ),
+    Key( [ mod ], 'v', lazy.spawn( applications[ 'media' ] ), desc='Launch Media Player' ),
+    Key( [ mod, 'shift' ], 'c', lazy.spawn( applications[ 'database_client' ] ), desc='Launch Database Client' ),
     Key( [ mod, 'shift' ], 'p', lazy.spawn( applications[ 'tor_browser' ] ), desc='Launch Browser in Tor Mode' ),
+    Key( [ mod ], 's', lazy.spawn( applications[ 'screen_shot' ] ), desc='Take a Screenshot' ),
     Key( [ mod ], 'o', lazy.spawn( applications[ 'obs' ] ), desc='Launch OBS' ),
     Key( [ mod ], 'd', lazy.spawn( applications[ 'docker' ] ), desc='Launch Docker' ),
     Key( [ mod, 'shift' ], 'd', lazy.spawn( applications[ 'docker_restart' ] ), desc='Launch Docker' ),
@@ -50,7 +58,7 @@ keys = [
     Key( [ mod ], 'Tab', lazy.next_layout(), desc='Toggle between layouts' ),
     Key( [ mod ], 'w', lazy.window.kill(), desc='Kill focused window' ),
     Key( [ mod, 'control' ], 'r', lazy.reload_config(), desc='Reload the config' ),
-    Key( [ mod, 'control' ], 'q', lazy.shutdown(), desc='Shutdown Qtile' ),
+    # Key( [ mod, 'control' ], 'q', lazy.shutdown(), desc='Shutdown Qtile' ),
     Key( [ mod ], 'r', lazy.spawncmd(), desc='Spawn a command using a prompt widget' ),
 ]
 

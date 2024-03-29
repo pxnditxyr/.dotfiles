@@ -34,6 +34,25 @@ alias off='cd ~/workspace/portfolio-projects/offerme/offerme-front'
 alias iff='cd ~/workspace/others/ing-mier/formulario/landing-formulario'
 alias ifb='cd ~/workspace/others/ing-mier/formulario/formulario-back'
 
+alias jmf='cd ~/workspace/projects-twitch/landing-company/landing-company-front'
+alias jmb='cd ~/workspace/projects-twitch/landing-company/landing-company-back'
+
+alias pui='cd ~/workspace/portfolio-projects/pxndxs-ui'
+
+# courses
+alias c5n='cd ~/workspace/courses/node/05-noc'
+alias c6n='cd ~/workspace/courses/node/06-json-server'
+alias c7n='cd ~/workspace/courses/node/07-rest-web'
+alias c8n='cd ~/workspace/courses/node/08-rest-server'
+
+alias jgb="cd ~/workspace/others/jhonnael/eventride/eventride-back"
+alias jgf="cd ~/workspace/others/jhonnael/eventride/eventride-front"
+
+# portfolio projects
+alias nob='cd ~/workspace/portfolio-projects/notices/notices-back'
+alias nof='cd ~/workspace/portfolio-projects/notices/notices-front'
+
+
 # exports
 export PATH="/home/pxndxs/.config/binaries/:$PATH"
 
