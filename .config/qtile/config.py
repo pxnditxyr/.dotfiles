@@ -90,9 +90,9 @@ for i in groups:
 
 
 layout_config = {
-    'border_focus': '#B71375',
+    'border_focus': '#65B741',
     'border_width': 2,
-    'margin': 4
+    'margin': 3
 }
 
 layouts = [
@@ -112,7 +112,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='CaskaydiaCove NFM Regular',
+    # font='CaskaydiaCove NFM Regular',
+    font='JetBrainsMono Nerd Font',
     fontsize=16,
     padding=10,
     background='#4D455D'
