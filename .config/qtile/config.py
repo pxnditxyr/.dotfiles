@@ -7,7 +7,7 @@ mod = "mod4"
 
 applications = {
     'terminal': 'kitty',
-    'browser': 'brave-browser-nightly',
+    'browser': 'brave-browser-nightly --password-store=basic',
     'private_browser': 'brave-browser-nightly --incognito',
     'tor_browser': 'brave-browser-nightly --incognito --tor',
     'obs': 'obs',
