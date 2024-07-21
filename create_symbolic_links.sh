@@ -14,3 +14,6 @@ ln -s ~/.dotfiles/.config/kitty  ~/.config/kitty
 
 rm -rf ~/.config/binaries
 ln -s ~/.dotfiles/.config/binaries  ~/.config/binaries
+
+rm -rf ~/.config/picom
+ln -s ~/.dotfiles/.config/picom  ~/.config/picom

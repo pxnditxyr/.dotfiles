@@ -1,7 +1,6 @@
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.widget.volume import Volume
 
 mod = "mod4"
 
@@ -62,31 +61,23 @@ keys = [
     Key( [ mod ], 'r', lazy.spawncmd(), desc='Spawn a command using a prompt widget' ),
 ]
 
-groups = [ Group( i ) for i in '123456789' ]
+groups = [ Group( i ) for i in [
+    "   ", "    ", "   ", " 󰌠  ", "   ", "   ", " 󰊢  ", "  ",
+] ]
 
-for i in groups:
-    keys.extend(
-        [
-            # mod1 + letter of group = switch to group
-            Key(
-                [ mod ],
-                i.name,
-                lazy.group[ i.name ].toscreen(),
-                desc='Switch to group {}'.format( i.name ),
-            ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
-            Key(
-                [ mod, 'shift' ],
-                i.name,
-                lazy.window.togroup( i.name, switch_group=True ),
-                desc='Switch to & move focused window to group {}'.format( i.name ),
-            ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, 'shift'], i.name, lazy.window.togroup(i.name),
-            #     desc='move focused window to group {}'.format(i.name)),
-        ]
-    )
+for i, group in enumerate( groups ):
+    actual_key = str( i + 1 )
+    keys.extend([
+        Key(
+            [ mod ],
+            actual_key, lazy.group[ group.name ].toscreen()
+        ),
+        Key(
+            [ mod, "shift" ],
+            actual_key,
+            lazy.window.togroup( group.name, switch_group=True )
+        )
+    ])
 
 
 layout_config = {
@@ -96,27 +87,20 @@ layout_config = {
 }
 
 layouts = [
-    layout.Columns( **layout_config ),
-    layout.Max(),
-    # Try more layouts by unleashing below layouts.
-    # layout.Stack(num_stacks=2),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
+    layout.Bsp(
+        border_focus="#9ccfd8",
+        border_normal="#31748f",
+        border_width=1, margin=5
+    ),
+    layout.Max( **layout_config ),
 ]
 
 widget_defaults = dict(
     # font='CaskaydiaCove NFM Regular',
     font='JetBrainsMono Nerd Font',
-    fontsize=16,
-    padding=10,
-    background='#4D455D'
+    fontsize=18,
+    padding=6,
+    # background='#4D455D'
 )
 
 extension_defaults = widget_defaults.copy()
@@ -125,49 +109,183 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout( background='#FFDCB6', foreground='#2A2F4F' ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=10,
+                ),
+                widget.Image(
+                    filename="~/.config/qtile/archlinux-icon.svg",
+                    scale="False"
+                ),
+                widget.Sep(
+                    linewidth=0,
+                    padding=6
+                ),
                 widget.GroupBox(
-                    background='#FFDCB6',
-                    foreground='#FF6D60',
-                    active='#C92C6D',
-                    margin_y=3,
-                    margin_x=0,
-                    padding_y=8,
-                    padding_x=5,
-                    borderwidth=2,
-                    block_highlight_text_color='#3A98B9',
-                    # inactivate='#404040',
-                    this_current_screen_border='#FF6D60',
-                    disable_drag=True
+                    active="#ffffff",
+                    rounded=False,
+                    highlight_color="#c4a7e7",
+                    highlight_method="line",
+                    borderwidth=0
                 ),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ('#ff0000', '#ffffff'),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.WindowName(
+                    foreground="#eb6f92",
+                    markup=True,
+                    font="CodeNewRoman Nerd Font",
+                    fontsize=15,
+                    max_chars=63
                 ),
-                # widget.StatusNotifier(),
+                widget.TextBox(
+                    text='',
+                    background="#232136",
+                    foreground="#f6c177",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.TextBox(
+                    text=' ',
+                    background="#f6c177",
+                    foreground="#191724",
+                    padding=7
+                ),
+                widget.CurrentLayout(
+                    background="#f6c177",
+                    foreground="#191724"
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#f6c177",
+                    foreground="#e0def4",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.CPU(
+                    background="#e0def4",
+                    foreground="191724",
+                    format="󰘚 {load_percent}%"
+                ),
+                widget.TextBox(
+                    text='',
+                    foreground="#eb6f92",
+                    background="#e0def4",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.Memory(
+                    format="{MemUsed: .0f}{mm}",
+                    background="#eb6f92",
+                    foreground="#191724",
+                    interval=1.0
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#eb6f92",
+                    foreground="#9ccfd8",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.Net(
+                    interface="enp0s31f6",
+                    format=" {interface}: {down} ↓↑ {up}",
+                    background="#9ccfd8",
+                    foreground="#191724",
+                    update_interval=1.0
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#9ccfd8",
+                    foreground="#c4a7e7",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#c4a7e7",
+                    foreground="#191724",
+                    padding=7
+                ),
+                widget.Clock(
+                    background="#c4a7e7",
+                    foreground="#191724",
+                    format="%H:%M - %d/%m/%Y",
+                    update_interval=60.0
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#c4a7e7",
+                    foreground="#232136",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.Volume(
+                    foreground="#e0def4",
+                    fmt=" {}"
+                ),
                 widget.Systray(),
-                widget.TextBox( '🐼 Pxndxs 🐼', foreground='#2A2F4F', background='#FFDCB6' ),
-                Volume(
-                    background='#3EDBF0',
-                    padding=3,
-                    update_interval=0.1,
-                    emoji=True,
-                    mute_command='pactl set-sink-mute @DEFAULT_SINK@ toggle',
-                    volume_up_command='pactl set-sink-volume @DEFAULT_SINK@ +5%',
-                    volume_down_command='pactl set-sink-volume @DEFAULT_SINK@ -5%',
-                ),
-                widget.Clock( format='%Y-%m-%d %a %I:%M %p', background='#FFDCB6', foreground='#2A2F4F' ),
-                # widget.QuickExit(),
             ],
-            24,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            25,
+            background="#232136",
         ),
     ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    active="#ffffff",
+                    rounded=False,
+                    highlight_color="#c4a7e7",
+                    highlight_method="line",
+                    borderwidth=0
+                ),
+                widget.WindowName(
+                    foreground="#eb6f92",
+                    markup=True,
+                    font="CodeNewRoman Nerd Font",
+                    fontsize=15,
+                ),
+                widget.TextBox(
+                    text='',
+                    foreground="#e0def4",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.TextBox(
+                    text=' ',
+                    background="#e0def4",
+                    foreground="#191724",
+                    padding=2
+                ),
+                widget.CheckUpdates(
+                    update_interval=18000,
+                    display_format="{updates}",
+                    colour_have_updates="#191724",
+                    background="#e0def8"
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#e0def8",
+                    foreground="#c4a7e7",
+                    padding=0,
+                    fontsize=42
+                ),
+                widget.TextBox(
+                    text='',
+                    background="#c4a7e7",
+                    foreground="#191724",
+                    padding=7
+                ),
+                widget.Clock(
+                    background="#c4a7e7",
+                    foreground="#191724",
+                    format="%H:%M",
+                    update_interval=60.0
+                ),
+            ],
+            25,
+            background="#232136",
+        ),
+    ),
+
 ]
 
 # Drag floating layouts.
@@ -198,20 +316,9 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
 
-# When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "LG3D"
 
